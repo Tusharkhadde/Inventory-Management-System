@@ -24,8 +24,24 @@ public class Main {
 
     public Main() {
         productDAO = new ProductDAO();
-        productDAO.createTableIfNotExists();
         initializeUI();
+        
+        // NeonDB free tier can take a few seconds to wake up, so we connect in the background 
+        // to prevent freezing the UI when the app starts.
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                System.out.println("Connecting to database... This may take up to 10 seconds.");
+                productDAO.createTableIfNotExists();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                System.out.println("Database connected!");
+                refreshTable();
+            }
+        }.execute();
     }
 
     private void initializeUI() {
@@ -85,9 +101,8 @@ public class Main {
         deleteButton.addActionListener(e -> deleteProduct());
         refreshButton.addActionListener(e -> refreshTable());
 
-        // Initial Data Load
-        refreshTable();
-
+        // Removed initial automatic refreshTable() from here, as it will run after the DB connects in the background.
+        
         frame.setVisible(true);
     }
 
