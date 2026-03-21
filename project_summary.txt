@@ -1,0 +1,26 @@
+Inventory Management System - Project Summary
+
+1. Overview
+This is a desktop-based Inventory Management System designed to allow users to efficiently perform CRUD (Create, Read, Update, Delete) operations on product records. It tracks Product ID, Name, Quantity, and Price.
+
+2. Technology Stack
+- Language: Java (Core Java / JDK 17)
+- UI Framework: Java Swing (for the graphical user interface components like JFrame, JTable, JButton, etc.)
+- Database: PostgreSQL (hosted on NeonDB cloud platform)
+- Build Tool / Dependency Manager: Apache Maven
+- Environment Configuration: dotenv-java (for securely loading database credentials from a .env file)
+- Database Connectivity: JDBC (Java Database Connectivity) API with PostgreSQL driver
+
+3. Architecture
+- Model-View-Controller (MVC) Pattern elements:
+  - Model: The Product class represents the data entity.
+  - View: Main class builds the Swing UI window and handles user interactions.
+  - Controller/DAO layer: ProductDAO abstracts all database operations (SQL queries) away from the UI.
+- Utility: DatabaseConnection handles securely parsing the .env configurations and generating the JDBC Connection objects.
+
+4. Current Features
+- Display list of all products in a JTable 
+- Add new product to inventory
+- Update existing product details by ID
+- Delete a product by ID
+- Asynchronous database connection at startup to prevent UI freezing (accounts for NeonDB spin-up time).
