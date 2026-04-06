@@ -26,12 +26,11 @@ public class Main {
         productDAO = new ProductDAO();
         initializeUI();
         
-        // NeonDB free tier can take a few seconds to wake up, so we connect in the background 
-        // to prevent freezing the UI when the app starts.
+        // Connect to the database in the background to prevent freezing the UI when the app starts.
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() {
-                System.out.println("Connecting to database... This may take up to 10 seconds.");
+                System.out.println("Connecting to database...");
                 productDAO.createTableIfNotExists();
                 return null;
             }
@@ -177,6 +176,6 @@ public class Main {
 
     public static void main(String[] args) {
         setUIFont(new FontUIResource("SansSerif", Font.PLAIN, 16));
-        SwingUtilities.invokeLater(() -> new Main());
+        SwingUtilities.invokeLater(() -> new LoginScreen());
     }
 }
