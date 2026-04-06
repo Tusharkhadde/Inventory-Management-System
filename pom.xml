@@ -27,5 +27,11 @@
             <artifactId>dotenv-java</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <!-- FlatLaf for modern Swing UI -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 </project>
