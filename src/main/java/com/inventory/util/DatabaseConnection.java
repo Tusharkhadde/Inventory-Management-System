@@ -18,10 +18,10 @@ public class DatabaseConnection {
         }
     }
 
-    // Safely get variables using the keys present in your .env file
-    private static final String URL = env.get("DB_URL", "jdbc:postgresql://ep-late-tree-adnlm9el-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require");
-    private static final String USER = env.get("DB_USER", "neondb_owner");
-    private static final String PASSWORD = env.get("DB_PASSWORD", "npg_hBDdik4TVC6G");
+    // Local PostgreSQL defaults for pgAdmin (use .env to override)
+    private static final String URL = env.get("DB_URL", "jdbc:postgresql://localhost:5432/inventory_db");
+    private static final String USER = env.get("DB_USER", "postgres");
+    private static final String PASSWORD = env.get("DB_PASSWORD", "password");
 
     public static Connection getConnection() throws SQLException {
         try {
